@@ -11,10 +11,37 @@ ECE382_Lab7
   
 # Required Functionality
 
-Once I had a good understanding of how the sample code from the lesson notes, it was pretty simple to implement the same code to work for all three sensors. I wired up the left sensor to LED 1 (required in lab, and shown in schematic above), the right sensor to LED 2 and then the center sensor to LED 1 as well.  
+Once I had a good understanding of how the sample code from the lesson notes, it was pretty simple to implement the same code to work for all three sensors. I wired up the left sensor to LED 1 (required in lab, and shown in schematic above), the right sensor to LED 2 and then the center sensor to LED 1 as well. The code below shows the initializations for the ATD converter as well as the LED bits. 
+
+      ADC10CTL0 = ADC10SHT_3 + ADC10ON + ADC10IE;		 // ADC10ON, interrupt enabled
+      ADC10CTL1 = ADC10DIV_7;   
+      ADC10CTL1 |= ADC10SSEL1|ADC10SSEL0;  				// Select SMCLK
+
+      P1DIR |= BIT0; 									// Set P1.0 to output direction
+      P1DIR |= BIT6;
+     
+Once I had the inializations all figured out from referencing the data sheet, I began working on the code for each sensor. I created seperate functions for each LED to set the correct input channels and bits for each sensor based on the wiring shown in the schematic above. The code below is the code for the left sensor, the code for the other two sensors was the same aside from the changing of the input channel and bit. 
+
+       ADC10CTL0 &= ~ENC;
+       ADC10CTL1 = INCH_3;
+       ADC10AE0 |= BIT3;
+       ADC10CTL0 |= ENC + ADC10SC;
+       __bis_SR_register(CPUOFF + GIE);
+
+       return ADC10MEM;
+       
+
+Once I had that code done, I moved on to the for loop to light the LEDS based on each sensor. For this, I would call the particular sensor function and then use an if else statement to compare the voltage value taken in from the sensor and a hex value to light the LED. The hex value is slightly different between the three IR sensors.
+
+      rightSensor();
+      if (ADC10MEM < 0x180)
+        	P1OUT &= BIT6;
+       else
+      	P1OUT |= BIT6;
+      	
+It took quite a bit of testing to determine the hex value to set as the threshold in order to maximize the distance the IR sensor could sense an object. 
 
 # A Functionality
-
 
 # Conclusion
 
