@@ -41,14 +41,20 @@ Once I had that code done, I moved on to the for loop to light the LEDS based on
       	
 It took quite a bit of testing to determine the hex value to set as the threshold in order to maximize the distance the IR sensor could sense an object. 
 
-# A Functionality
+# A functionality
+
+Each of the IR sensors on the robot are slightly different in their thresholds. A functionality tasks us with fully characterizing each sensor individually by showing the ATD values for a variety of distances from a wall or object. The graph below shows the voltage response for each sensor for distances ranging from 0 in from the sensor to 10 in from the sensor. 
 
  ![alt text] (https://raw.github.com/CassieMcPeek/ECE382_Lab7/master/Graph.JPG "Schematic")
+ 
+The table below takes the voltage values measured for each sensor and converts them to decimal and hex values in order to be compared through the code. 
  
   ![alt text] (https://raw.github.com/CassieMcPeek/ECE382_Lab7/master/Table.JPG "Schematic")
 
 # Conclusion
 
+This lab showed that each sensor is different in the values that they take in, and therefore it took a lot of tries to maximize the distance that each sensor would detect an object or wall. By ensuring that I increased the threshold for each sensor will hopefully help my robot to more easily detect a wall in the following lab. 
+
 # Documentation
-    
+    Dusty Weisner helped me debug my code and also fix my CCS when it wasn't recognizing my MSP430. 
     
