@@ -43,6 +43,10 @@ It took quite a bit of testing to determine the hex value to set as the threshol
 
 # A Functionality
 
+ ![alt text] (https://raw.github.com/CassieMcPeek/ECE382_Lab7/master/Graph.JPG "Schematic")
+ 
+  ![alt text] (https://raw.github.com/CassieMcPeek/ECE382_Lab7/master/Table.JPG "Schematic")
+
 # Conclusion
 
 # Documentation
